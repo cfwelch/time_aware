@@ -6,7 +6,7 @@ from playsound import playsound
 from argparse import ArgumentParser
 
 #dir_path = os.path.dirname(os.path.realpath(__file__))
-dir_path = "~/workspace/data/icons
+dir_path = "~/workspace/data/icons"
 
 icon1_loc = dir_path + "/hourglass.png"
 icon2_loc = dir_path + "/hourglass3.png"
