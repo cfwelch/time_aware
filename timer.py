@@ -1,15 +1,28 @@
 
 
-import time, os
+import psutil, time, os
 
 from playsound import playsound
 from argparse import ArgumentParser
 
+icon1_loc = "./hourglass.png"
+icon2_loc = "./hourglass3.png"
+
 def remain(num_min):
-    os.system("notify-send --urgency=critical -i ~/workspace/data/icons/hourglass.png '" + str(num_min) + " minutes remain...'")
+    if psutil.OSX:
+        os.system("osascript -e 'display notification \"" + str(num_min) + " minutes remain...\" with title \"{}\"'")
+    elif psutil.LINUX:
+        os.system("notify-send --urgency=critical -i " + icon1_loc + " '" + str(num_min) + " minutes remain...'")
+    elif psutil.WINDOWS:
+        print("Windows is not supported...")
 
 def done():
-    os.system("notify-send --urgency=critical -i ~/workspace/data/icons/hourglass3.png 'Time is up!'")
+    if psutil.OSX:
+        os.system("osascript -e 'display notification \"Time is up!\" with title \"{}\"'")
+    elif psutil.LINUX:
+        os.system("notify-send --urgency=critical -i " + icon2_loc + " 'Time is up!'")
+    elif psutil.WINDOWS:
+        print("Windows is not supported...")
 
 # Parse arguments
 parser = ArgumentParser()
