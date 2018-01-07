@@ -5,8 +5,9 @@ import psutil, time, os
 from playsound import playsound
 from argparse import ArgumentParser
 
-icon1_loc = "./hourglass.png"
-icon2_loc = "./hourglass3.png"
+dir_path = os.path.dirname(os.path.realpath(__file__))
+icon1_loc = dir_path + "/hourglass.png"
+icon2_loc = dir_path + "/hourglass3.png"
 
 def remain(num_min):
     if psutil.OSX:
