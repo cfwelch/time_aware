@@ -12,10 +12,15 @@ icon1_loc = dir_path + "/hourglass.png"
 icon2_loc = dir_path + "/hourglass3.png"
 
 def remain(num_min):
+    hours = int(num_min/60)
+    mins = num_min%60
+    alert_str = str(mins) + " minutes remain..."
+    if hours > 0:
+        alert_str = str(hours) + " hours and " + alert_str
     if psutil.OSX:
-        os.system("osascript -e 'display notification \"" + str(num_min) + " minutes remain...\" with title \"{}\"'")
+        os.system("osascript -e 'display notification \"" + alert_str + "\" with title \"{}\"'")
     elif psutil.LINUX:
-        os.system("notify-send --urgency=critical -i " + icon1_loc + " '" + str(num_min) + " minutes remain...'")
+        os.system("notify-send --urgency=critical -i " + icon1_loc + " '" + alert_str + "'")
     elif psutil.WINDOWS:
         print("Windows is not supported...")
 
